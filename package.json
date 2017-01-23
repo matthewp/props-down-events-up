@@ -1,0 +1,22 @@
+{
+  "name": "props-down-events-up",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app-store.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewp/props-down-events-up.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewp/props-down-events-up/issues"
+  },
+  "homepage": "https://github.com/matthewp/props-down-events-up#readme",
+  "dependencies": {
+    "bram": "^0.6.1"
+  }
+}

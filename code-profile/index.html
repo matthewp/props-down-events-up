@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+  <title>My app</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="../node_modules/bram/bram.umd.js"></script>
+  <script defer src="./name-tag.js"></script>
+  <script defer src="./user-info-form.js"></script>
+  <script defer src="./user-customization.js"></script>
+  <script defer src="./user-repos.js"></script>
+  <script defer src="./my-app.js"></script>
+</head>
+<body>
+  <template id="appTmpl">
+    <style>
+      :host {
+        display: block;
+        font-family: var(--font-family);
+        margin: 3em;
+      }
+
+      .app-name {
+        text-align: center;
+      }
+    </style>
+
+    <h1 class="app-name">Coders Profile</h1>
+
+    <name-tag :first="{{user.first}}" :last="{{user.last}}"></name-tag>
+
+    <h2>User Info</h2>
+    <user-info-form :user="{{user}}" on-user-info="updateUser"></user-info-form>
+
+    <h2>Customize</h2>
+    <user-customization on-color-change="updateBg"></user-customization>
+
+    <h2>Repos</h2>
+    <user-repos :handle="{{user.gh}}"></user-repos>
+  </template>
+
+  <template id="userInfoTmpl">
+    <style>
+      fieldset {
+        border-width: 0;
+      }
+    </style>
+
+    <form id="changeForm" on-submit="changeInfo">
+      <fieldset>
+        <label for="gh">GitHub Handle</label>
+        <input type="text" name="gh" placeholder="GitHub">
+      </fieldset>
+
+      <fieldset>
+        <label for="first">First Name</label>
+        <input type="text" name="first" placeholder="First">
+      </fieldset>
+
+      <fieldset>
+        <label for="last">First Name</label>
+        <input type="text" name="last" placeholder="Last">
+      </fieldset>
+
+      <input type="submit" value="Submit">
+    </form>
+  </template>
+
+  <template id="nameTmpl">
+    <style>
+      :host {
+        color: tomato;
+      }
+    </style>
+    <h1>{{fullName}}</h1>
+  </template>
+
+  <template id="reposTmpl">
+    <template if="{{loading}}">
+      <h2>Loading...</h2>
+    </template>
+
+    <ul>
+      <template each="{{repos}}">
+        <li>{{name}}</li>
+      </template>
+    </ul>
+  </template>
+
+  <template id="customTmpl">
+    <form>
+      <label for="colorSelection">Background</label>
+      <select name="colorSection" on-change="change">
+        <option value=""></option>
+        <option value="BlanchedAlmond">BlanchedAlmond</option>
+        <option value="CornflowerBlue">CornflowerBlue</option>
+        <option value="MediumSeaGreen">MediumSeaGreen</option>
+        <option value="LightCyan">LightCyan</option>
+        <option value="Orchid">Orchid</option>
+        <option value="PaleVioletRed">PaleVioletRed</option>
+      </select>
+    </form>
+  </template>
+
+  <my-app></my-app>
+</body>
+</html>
